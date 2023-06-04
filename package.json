@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "Guess the number of dice roll",
   "main": "script.js",
-  "scripts": {},
+  "scripts": {
+    "start": "parcel serve index.html",
+    "build": "parcel build index.html --dist-dir ./dist"
+  },
   "author": "RakshithRajkumar",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "parcel": "^2.9.1"
   }
 }
