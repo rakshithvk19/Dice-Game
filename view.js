@@ -24,10 +24,13 @@ export const addHandlerBtnHold = function (helper) {
 };
 
 //Btn New Publisher.
-export const addHandlerBtnNew = function () {};
+export const addHandlerBtnNew = function (helper) {
+  btnNew.addEventListener('click', helper);
+};
 
 //Render the changes in the view.
 export const renderView = function (result) {
+  console.log(result.activePlayer, result.diceVal);
   if (result.gameWon) {
     hideDice();
     document
@@ -42,6 +45,21 @@ export const renderView = function (result) {
     currentDice.classList.remove('hidden');
     document.getElementById(`current--${result.activePlayer}`).textContent =
       result.currentVal.toString();
+    document
+      .querySelector(`.player--${result.activePlayer}`)
+      .classList.add('player--active');
+  }
+
+  if (result.onHold) {
+    renderHold(result);
+  }
+
+  if (result.playerChanged && !result.onHold) {
+    toggleView();
+  }
+
+  if (result.isNew) {
+    renderNew(result);
   }
 };
 
@@ -51,4 +69,30 @@ const hideDice = function () {
   diceClass.forEach(eachDice => {
     eachDice.classList.add('hidden');
   });
+};
+
+//Toggle view of active player
+const toggleView = function () {
+  player0El.classList.toggle('player--active');
+  player1El.classList.toggle('player--active');
+};
+
+//Render view when new game.
+const renderNew = function (result) {
+  hideDice();
+  // toggleView();
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  player0El.classList.remove('player--winner');
+  player1El.classList.remove('player--winner');
+};
+
+const renderHold = function (result) {
+  document.getElementById(`score--${result.activePlayer}`).textContent =
+    result.score[result.activePlayer];
+  toggleView();
+  current0El.textContent = 0;
+  current1El.textContent = 0;
 };
