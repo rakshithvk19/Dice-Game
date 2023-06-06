@@ -8,12 +8,16 @@ const modelResult = {
   playerChanged: false,
   onHold: false,
   isNew: false,
+  onRoll: false,
   diceVal: 6,
 };
 
 //Validation rules when dice rolled.
 export const validateBtnRoll = function () {
+  if (modelResult.gameWon) return modelResult;
+  modelResult.onRoll = true;
   modelResult.isNew = false;
+
   if (modelResult.score[modelResult.activePlayer] >= WIN_SCORE) {
     //When current score value is equal to max score.
     modelResult.gameWon = true;
@@ -33,6 +37,11 @@ export const validateBtnRoll = function () {
 
 //Validation rules when dice held.
 export const validateBtnHold = function () {
+  if (modelResult.gameWon) return modelResult;
+
+  modelResult.onRoll = false;
+  modelResult.gameWon = false;
+
   modelResult.score[modelResult.activePlayer] += modelResult.currentVal;
 
   if (modelResult.score[modelResult.activePlayer] >= WIN_SCORE) {
@@ -51,11 +60,13 @@ export const validateBtnHold = function () {
 
 //Validation when new game.
 export const validateBtnNew = function () {
-  modelResult.score.forEach(eachScore => (eachScore = 0));
+  modelResult.onRoll = false;
+  modelResult.score = [0, 0];
   modelResult.gameWon = false;
   modelResult.currentVal = 0;
   modelResult.onHold = false;
   modelResult.isNew = true;
+  modelResult.playerChanged = true;
 
   return modelResult;
 };

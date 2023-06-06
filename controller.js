@@ -22,8 +22,8 @@ const controlBtnHold = function () {
 //Btn New subscriber.
 const controlBtnNew = function () {
   const modelNewResult = model.validateBtnNew();
-  model.switchPlayer();
   view.renderView(modelNewResult);
+  model.switchPlayer();
 };
 
 const init = function () {
@@ -32,13 +32,3 @@ const init = function () {
   view.addHandlerBtnNew(controlBtnNew);
 };
 init();
-
-// To Do
-// 1. change the data model but making currentVal as Array
-// 2. validate new button to reset both currentVal
-// 3. refactor view code.
-
-/**
- * 1. when dice becomes 1.
- * 2. when dice held.
- */
