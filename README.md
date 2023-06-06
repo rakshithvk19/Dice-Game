@@ -9,3 +9,5 @@ The player can hold the current score by pressing the hold button which saves hi
 If the score of the player turns 20 or more and chooses to hold the game he would be declared as the winner.
 On winning the game, clicking the new button will reset the game and loser gets to chance to roll the dice.
 Have fun!!
+
+The project is developed using MVC architecture for ease of maintenance and code readability.
