@@ -2,7 +2,7 @@
   "name": "dice-game",
   "version": "1.0.0",
   "description": "Guess the number of dice roll",
-  "main": "script.js",
+  "default": "index.html",
   "scripts": {
     "start": "parcel serve index.html",
     "build": "parcel build index.html --dist-dir ./dist"
